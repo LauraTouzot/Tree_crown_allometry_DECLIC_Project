@@ -1,3 +1,2 @@
-# Tree Crown Allometry
-# DECLIC Project
+# Tree Crown Allometry - DECLIC Project
 
