@@ -103,7 +103,54 @@ compute_mean_parameters_nocomp <- function(mean_characteristics_nocomp) {
 
 compute_mean_parameters_comp <- function(species_list_comp) {
   
+  height <- read.csv(file = "data/height_power_comp_weighted_parameters_c2.csv")
+  height <- height %>% dplyr::select(-X) %>%
+                       dplyr::arrange(species) %>%
+                       dplyr::filter(species %in% species_list_comp) %>%
+                       dplyr::group_by(species) %>%
+                       dplyr::summarise(a1_h_mean = mean(a1),
+                                        a2_h_mean = mean(a2),
+                                        ci_h_mean = mean(comp),
+                                        a1_h_sd = sd(a1),
+                                        a2_h_sd = sd(a2),
+                                        ci_h_sd = sd(comp)) %>%
+                       dplyr::ungroup() 
   
+  
+  diameter <- read.csv(file = "data/diameter_comp_weighted_parameters_c2.csv")
+  diameter <- diameter %>% dplyr::select(-X) %>%
+                           dplyr::arrange(species) %>%
+                           dplyr::filter(species %in% species_list_comp) %>%
+                           dplyr::group_by(species) %>%
+                           dplyr::summarise(a1_cd_mean = mean(a1),
+                                            a2_cd_mean = mean(a2),
+                                            ci_cd_mean = mean(comp),
+                                            a1_cd_sd = sd(a1),
+                                            a2_cd_sd = sd(a2),
+                                            ci_cd_sd = sd(comp)) %>%
+                           dplyr::ungroup() 
+  
+  
+  ratio <- read.csv(file = "data/ratio_compweighted_parameters_c2.csv")
+  ratio <- ratio %>% dplyr::select(-X) %>%
+                     dplyr::arrange(species) %>%
+                     dplyr::filter(species %in% species_list_comp) %>%
+                     dplyr::group_by(species) %>%
+                     dplyr::summarise(a1_rcd_mean = mean(a1),
+                                      a2_rcd_mean = mean(a2),
+                                      ci_rcd_mean = mean(comp),
+                                      a1_rcd_sd = sd(a1),
+                                      a2_rcd_sd = sd(a2),
+                                      ci_rcd_sd = sd(comp)) %>%
+                     dplyr::ungroup() 
+  
+  comp_parameters <- join_all(list(height, ratio, diameter), 
+                              by = "species", type = "left")
+  
+  write.csv(file = "mean_parameters_competition.csv", comp_parameters)
+  
+  return(comp_parameters)
+                  
 }
 
 
