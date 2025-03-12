@@ -1,16 +1,19 @@
 # Tree Crown Allometry - DECLIC Project
 
 Step 1: compiling the database
+
 The code for compiling the database is available in the 01_Database_compilation folder. 
 Data have not been added to the folder, but the links and references to the various databases, repositories or data papers are available in Supporting Information A; Table S1 (see also below). 
 The _targets.R file provides the entire pipeline for compiling and cleaning the database, while the functions required to implement it are available in full in the R folder. 
 
 
 Step 2: fitting and selecting allometry models
+
 The code for fitting all considered allometry models (i.e., asymptotic, power-law and beta-regression models, with and without competition, using either BAT or BAL as competition index and whether weighting or not the protocol effects) is available in the 02_Allometry_relationships folder. 
 Data has not been added to the folder but can be computed in Step 1. The database compiled in the first step is used as it is in Step 2. 
 
 Step 3: performing all analyses
+
 The code, data and output to perform all analyses presented in the manuscript, along with producing the figures and tables, are provided in the main folder and organized as required by the used functions. 
 
 In addition, mean parameters and their standard deviations obtained for each studied species and crown characteristic, with and without competition (based on the selected models) are provided in files mean_parameters_nocompetition.csv and mean_parameters_competition.csv. 
