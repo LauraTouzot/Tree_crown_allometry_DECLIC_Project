@@ -1,24 +1,26 @@
 # Tree Crown Allometry - DECLIC Project
 
+R script to reproduce the analyses of the paper *Shade tolerance controls the spectrum of crown sizes and its response to local competition across European and North American tree species. Implications for light interception strategies*. Laura Touzot et al. There are three steps to reproduce all the analysis, we, however, provided all fitted models to reproduce the analysis and figures of the paper directly for step 3.
+
 Step 1: compiling the database
 
 The code for compiling the database is available in the 01_Database_compilation folder. 
-Data have not been added to the folder, but the links and references to the various databases, repositories or data papers are available in Supporting Information A; Table S1 (see also below). 
+Data have not been added to the folder, but the links and references to the various databases, repositories or data papers are available in Supporting Information A; Table S1 (see also below). Most data are open but for a few databases, the access must be requested to the data owner (contacts are provided in Table S1).
 The _targets.R file provides the entire pipeline for compiling and cleaning the database, while the functions required to implement it are available in full in the R folder. 
 
 
 Step 2: fitting and selecting allometry models
 
-The code for fitting all considered allometry models (i.e., asymptotic, power-law and beta-regression models, with and without competition, using either BAT or BAL as competition index and whether weighting or not the protocol effects) is available in the 02_Allometry_relationships folder. 
-Data has not been added to the folder but can be computed in Step 1. The database compiled in the first step is used as it is in Step 2. 
+The code for fitting all allometry models (i.e., asymptotic, power-law and beta-regression models, with and without competition, using either BAT or BAL as competition index and whether weighting or not the protocol effects) is available in the 02_Allometry_relationships folder. 
+Formatted data from step 1 has not been added to the folder but can be computed in Step 1. The database compiled in step 1 is used as it is in step 2. 
 
 Step 3: performing all analyses
 
-The code, data and output to perform all analyses presented in the manuscript, along with producing the figures and tables, are provided in the main folder and organized as required by the used functions. 
+The code, data (parameters of all fitted allometric models), and output to reproduce all analyses, figures and tables presented in the manuscript are provided in the main folder and organized as required by the functions used. 
 
-In addition, mean parameters and their standard deviations obtained for each studied species and crown characteristic, with and without competition (based on the selected models) are provided in files mean_parameters_nocompetition.csv and mean_parameters_competition.csv. 
+In addition, mean parameters and their standard deviations obtained for each studied species and crown characteristic, with and without competition (based on the selected models) are provided in files mean_parameters_nocompetition.csv and mean_parameters_competition.csv to simplify the use of the fitted models (instead of using all 100 resampled fits per model).
 
-Package targets is needed to run all scripts according to the pipelines available in _targets.R files.
+Package targets is needed to run all scripts according to the pipelines available in _targets.R files (additional required R packages are listed in the targets files).
 
 
 Databases, repositories and data papers' references: 
