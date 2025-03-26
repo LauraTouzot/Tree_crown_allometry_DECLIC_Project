@@ -4,13 +4,13 @@
 #                                                                        #
 ##########################################################################
 
-######## Options and packages 
+######## Options and packages
 
 # Loading targets
 library(targets)
 
 # Loading functions
-lapply(grep("R$", list.files("R"), value = TRUE), function(x) source(file.path("R", x)))
+lapply(list.files("R", pattern = ".R$", full.names = TRUE), source)
 
 # Installing if needed and loading packages
 packages.in <- c("baad.data", "stringr", "dplyr", "plyr", "sp", "rworldmap", "rgdal", "measurements",
@@ -23,17 +23,17 @@ packages.in <- c("baad.data", "stringr", "dplyr", "plyr", "sp", "rworldmap", "rg
                  "truncnorm")
 
 
-for (i in 1:length(packages.in)) if(!(packages.in[i] %in% rownames(installed.packages()))) install.packages(packages.in[i])
+for (pkg in packages.in) if(!(pkg %in% rownames(installed.packages()))) install.packages(pkg)
 
 
 # Specifying target options
 options(tidyverse.quiet = TRUE, clustermq.scheduler = "multiprocess")
-tar_option_set(packages = packages.in, 
+tar_option_set(packages = packages.in,
                memory = "transient", garbage_collection = TRUE)
 
 
 list(
-  
+
   ### 1. Compiling the database
 
   # baad database
@@ -146,4 +146,3 @@ list(
   tar_target(data_availability_comparison, binding_databases(NFI_data, summary_species))
 
   )
-  
